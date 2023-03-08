@@ -7,14 +7,14 @@ session = boto3.Session()
 sagemaker_runtime = session.client('sagemaker-runtime', region_name=session.region_name)
 
 # The name of the endpoint. The name must be unique within an AWS Region in your AWS account. 
-endpoint_name='flan-t5-xxl-2023-02-05-12-53-31-625'
+endpoint_name='<SAGEMAKER_ENDPOINT_NAME>'
 
 st.sidebar.title("Flan-T5 Parameters")
 
 stop_word = st.sidebar.text_input("Stop word")
-min_length, max_length = st.sidebar.slider("Min/Max length", 0, 200, (0, 50))
+min_length, max_length = st.sidebar.slider("Min/Max length", 0, 200, (30, 70))
 temperature = st.sidebar.slider("Temperature", min_value=0.0, max_value=1.0, value=0.3)
-rep_penalty = st.sidebar.slider("Repetition Penalty", min_value=0.9, max_value=1.2, value=1.0)
+rep_penalty = st.sidebar.slider("Repetition Penalty", min_value=0.7, max_value=1.3, value=1.0)
 
 def generate_text(prompt):
     do_sample = temperature > 0

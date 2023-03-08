@@ -18,10 +18,10 @@ def model_fn(model_dir):
             print("Model name file does not exist.")
             exit(1)
 
-    model_8bit = AutoModelForSeq2SeqLM.from_pretrained(model_name, cache_dir="/tmp/model_cache/")
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name, cache_dir="/tmp/model_cache/")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     
-    return model_8bit, tokenizer
+    return model, tokenizer
 
 
 def predict_fn(data, model_and_tokenizer):
